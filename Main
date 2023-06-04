@@ -1,6 +1,9 @@
 from pygame import *
 
 
+init()
+
+
 class GameSprite(sprite.Sprite):
     def __init__(self, p_image, x, y, speed, sizex, sizey):
         super().__init__()
@@ -24,3 +27,23 @@ class Player(GameSprite):
             self.rect.y += self.speed 
         if keys_pressed[K_d] and self.rect.x < 850:
             self.rect.x += self.speed
+
+MAIN_WIN_SIZE = [900, 700]
+background_c = [45, 45, 45]
+
+window = display.set_mode(MAIN_WIN_SIZE)
+window.fill(background_c)
+
+clock = time.Clock()
+
+finished = False
+FPS = 60
+
+while not(finished):
+    for even in event.get():
+        if even.type == QUIT:
+            finished = True
+
+    clock.tick(FPS)
+    display.update()
+
